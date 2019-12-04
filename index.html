@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>TM - Mobile Manager</title>
+  <!--здесь мы ссылаемся на стили, которые будем использовать в документе, а именно стиль иконок-->
+  <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+    crossorigin="anonymous"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/css/uikit-core-rtl.min.css"> -->
+    <link rel="stylesheet" href="./css/uikit.min.css">
+  <style>
+    html,
+    body {
+      margin: 0;
+      min-height: 100px;
+      padding: 0;
+      width: 320px;
+    }
+    .container{
+      margin: 10px;
+    }
+    .container-form{
+      display: flex;
+    }
+    .d-none{
+      display: none;
+    }
+    #devicesList{
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+  <script src="./js/uikit.min.js" defer></script>
+  <script src="./js/uikit-icons.min.js" defer></script>
+  <script src="app.js" defer></script>
+
+</head>
+<body>
+  <div class="container">
+    
+      <ul class="uk-child-width-expand" uk-tab uk-switcher="animation: uk-animation-slide-left-medium, uk-animation-slide-right-medium">
+          <li class="uk-active"><a href="#">Regress</a></li>
+          <li><a href="#">Mobile info</a></li>
+      </ul>
+      
+      <ul class="uk-switcher uk-margin">
+          <li>
+            <h4>Choose regress checklist status:</h4>
+            <div class="container-form">
+              <select name="statusRegressList" id="statusRegressList" class="uk-select">
+                <option value="1">New</option>
+                <option value="2">Pass</option>
+                <option value="3">Fail</option>
+                <option value="4">Blocked</option>
+                <option value="5">Skipped</option>
+              </select>
+              <button id="myButton" class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom"> Change State </button>
+            </div>
+          </li>
+          <li>
+            <h4>Choose OS version</h4>
+            <div id="chooseDeviceOs" class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+              <label id="android"><input class="uk-radio" type="radio" name="radio2" id="android"> Android </label>
+              <label id="ios"><input class="uk-radio" type="radio" name="radio2" id="ios"> iOs </label>
+            </div>
+        
+            <form id="devicesForm" class="d-none">
+              <h4>Choose devices:</h4>
+              <div id="devicesList" class="uk-margin uk-grid-small uk-child-width-auto uk-grid"></div>
+      
+              <h4>Choose Language:</h4>
+              <div id="languageList" class="uk-margin uk-grid-small uk-child-width-auto uk-grid"></div>
+      
+              <h4>Number of builds:</h4>
+              <div class="uk-margin">
+                  <input class="uk-input uk-form-small" type="number" placeholder="Number" maxlength="3" id="mobCountBuilds">
+              </div>
+              <button class="uk-button uk-button-primary uk-width-1-1">Fill</button>
+            </form>
+          </li>
+      </ul>
+    <script type="text/template" id="devicesListTemplate">
+        <label>
+            <input class="uk-checkbox" type="checkbox" {{checked}} value="{{id}}"> {{deviceName}} ({{deviceVersion}})
+        </label>
+    </script>
+
+    <script type="text/template" id="languageListTemplate">
+        <label>
+            <input class="uk-checkbox" type="checkbox" {{checked}} value="{{id}}"> {{languageName}}
+        </label>
+    </script>
+  </div>
+</body>
+
+</html>
